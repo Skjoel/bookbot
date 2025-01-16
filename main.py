@@ -1,10 +1,12 @@
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
-    #print(text)
-    print(f"There are {count_words(text)} words in the given text.")
-    print(f"the following characters appear in the given text: {count_characters(text)}")
-    print(sort_characters(count_characters(text)))
+    alpha_list = sort_characters(count_characters(text))
+    print(f"--- Begin report of {book_path} ---")
+    print(f"{count_words(text)} words found in the document")
+    for a in alpha_list:
+        print(f"The {a["character"]} character was found {a["num"]} times")
+    print(f"--- End report ---")
 
 def get_book_text(path):
     with open(path) as f:
@@ -27,11 +29,11 @@ def count_characters(text):
 def sort_on(dict):
     return dict["num"]
 
-def sort_characters(text):
+def sort_characters(dict):
     alphabet_list = []
-    for a in text:
+    for a in dict:
         if a.isalpha():
-            alphabet_list.append({"character": a,"num": text[a]})
+            alphabet_list.append({"character": a,"num": dict[a]})
     alphabet_list.sort(reverse=True, key=sort_on)
     return alphabet_list
 
