@@ -15,7 +15,7 @@ def main():
     print(f"--- Begin report of {book_path} ---")
     print(f"{count_words(text)} words found in the document")
     for a in alpha_list:
-        print(f"The {a["character"]} character was found {a["num"]} times")
+        print(f"{a["character"]}: {a["num"]}")
     print(f"--- End report ---")
 
 def get_book_text(path):
